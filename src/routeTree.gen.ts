@@ -28,6 +28,10 @@ import { Route as DashboardDevTodosRouteImport } from './routes/dashboard/dev-to
 import { Route as DashboardDevHistoryRouteImport } from './routes/dashboard/dev-history'
 import { Route as DashboardAuditLogsRouteImport } from './routes/dashboard/audit-logs'
 import { Route as DashboardActivityLogsRouteImport } from './routes/dashboard/activity-logs'
+import { Route as DashboardLedgerIndexRouteImport } from './routes/dashboard/ledger/index'
+import { Route as DashboardLedgerSystemsRouteImport } from './routes/dashboard/ledger/systems'
+import { Route as DashboardLedgerContractsRouteImport } from './routes/dashboard/ledger/contracts'
+import { Route as DashboardLedgerClientsRouteImport } from './routes/dashboard/ledger/clients'
 
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
@@ -126,6 +130,27 @@ const DashboardActivityLogsRoute = DashboardActivityLogsRouteImport.update({
   path: '/activity-logs',
   getParentRoute: () => DashboardRoute,
 } as any)
+const DashboardLedgerIndexRoute = DashboardLedgerIndexRouteImport.update({
+  id: '/ledger/',
+  path: '/ledger/',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardLedgerSystemsRoute = DashboardLedgerSystemsRouteImport.update({
+  id: '/ledger/systems',
+  path: '/ledger/systems',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardLedgerContractsRoute =
+  DashboardLedgerContractsRouteImport.update({
+    id: '/ledger/contracts',
+    path: '/ledger/contracts',
+    getParentRoute: () => DashboardRoute,
+  } as any)
+const DashboardLedgerClientsRoute = DashboardLedgerClientsRouteImport.update({
+  id: '/ledger/clients',
+  path: '/ledger/clients',
+  getParentRoute: () => DashboardRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -147,6 +172,10 @@ export interface FileRoutesByFullPath {
   '/dashboard/user-manual': typeof DashboardUserManualRoute
   '/dashboard/users': typeof DashboardUsersRoute
   '/dashboard/': typeof DashboardIndexRoute
+  '/dashboard/ledger/clients': typeof DashboardLedgerClientsRoute
+  '/dashboard/ledger/contracts': typeof DashboardLedgerContractsRoute
+  '/dashboard/ledger/systems': typeof DashboardLedgerSystemsRoute
+  '/dashboard/ledger/': typeof DashboardLedgerIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -167,6 +196,10 @@ export interface FileRoutesByTo {
   '/dashboard/user-manual': typeof DashboardUserManualRoute
   '/dashboard/users': typeof DashboardUsersRoute
   '/dashboard': typeof DashboardIndexRoute
+  '/dashboard/ledger/clients': typeof DashboardLedgerClientsRoute
+  '/dashboard/ledger/contracts': typeof DashboardLedgerContractsRoute
+  '/dashboard/ledger/systems': typeof DashboardLedgerSystemsRoute
+  '/dashboard/ledger': typeof DashboardLedgerIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -189,6 +222,10 @@ export interface FileRoutesById {
   '/dashboard/user-manual': typeof DashboardUserManualRoute
   '/dashboard/users': typeof DashboardUsersRoute
   '/dashboard/': typeof DashboardIndexRoute
+  '/dashboard/ledger/clients': typeof DashboardLedgerClientsRoute
+  '/dashboard/ledger/contracts': typeof DashboardLedgerContractsRoute
+  '/dashboard/ledger/systems': typeof DashboardLedgerSystemsRoute
+  '/dashboard/ledger/': typeof DashboardLedgerIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -212,6 +249,10 @@ export interface FileRouteTypes {
     | '/dashboard/user-manual'
     | '/dashboard/users'
     | '/dashboard/'
+    | '/dashboard/ledger/clients'
+    | '/dashboard/ledger/contracts'
+    | '/dashboard/ledger/systems'
+    | '/dashboard/ledger/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -232,6 +273,10 @@ export interface FileRouteTypes {
     | '/dashboard/user-manual'
     | '/dashboard/users'
     | '/dashboard'
+    | '/dashboard/ledger/clients'
+    | '/dashboard/ledger/contracts'
+    | '/dashboard/ledger/systems'
+    | '/dashboard/ledger'
   id:
     | '__root__'
     | '/'
@@ -253,6 +298,10 @@ export interface FileRouteTypes {
     | '/dashboard/user-manual'
     | '/dashboard/users'
     | '/dashboard/'
+    | '/dashboard/ledger/clients'
+    | '/dashboard/ledger/contracts'
+    | '/dashboard/ledger/systems'
+    | '/dashboard/ledger/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -396,6 +445,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardActivityLogsRouteImport
       parentRoute: typeof DashboardRoute
     }
+    '/dashboard/ledger/': {
+      id: '/dashboard/ledger/'
+      path: '/ledger'
+      fullPath: '/dashboard/ledger/'
+      preLoaderRoute: typeof DashboardLedgerIndexRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/ledger/systems': {
+      id: '/dashboard/ledger/systems'
+      path: '/ledger/systems'
+      fullPath: '/dashboard/ledger/systems'
+      preLoaderRoute: typeof DashboardLedgerSystemsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/ledger/contracts': {
+      id: '/dashboard/ledger/contracts'
+      path: '/ledger/contracts'
+      fullPath: '/dashboard/ledger/contracts'
+      preLoaderRoute: typeof DashboardLedgerContractsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/ledger/clients': {
+      id: '/dashboard/ledger/clients'
+      path: '/ledger/clients'
+      fullPath: '/dashboard/ledger/clients'
+      preLoaderRoute: typeof DashboardLedgerClientsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
   }
 }
 
@@ -416,6 +493,10 @@ interface DashboardRouteChildren {
   DashboardUserManualRoute: typeof DashboardUserManualRoute
   DashboardUsersRoute: typeof DashboardUsersRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
+  DashboardLedgerClientsRoute: typeof DashboardLedgerClientsRoute
+  DashboardLedgerContractsRoute: typeof DashboardLedgerContractsRoute
+  DashboardLedgerSystemsRoute: typeof DashboardLedgerSystemsRoute
+  DashboardLedgerIndexRoute: typeof DashboardLedgerIndexRoute
 }
 
 const DashboardRouteChildren: DashboardRouteChildren = {
@@ -435,6 +516,10 @@ const DashboardRouteChildren: DashboardRouteChildren = {
   DashboardUserManualRoute: DashboardUserManualRoute,
   DashboardUsersRoute: DashboardUsersRoute,
   DashboardIndexRoute: DashboardIndexRoute,
+  DashboardLedgerClientsRoute: DashboardLedgerClientsRoute,
+  DashboardLedgerContractsRoute: DashboardLedgerContractsRoute,
+  DashboardLedgerSystemsRoute: DashboardLedgerSystemsRoute,
+  DashboardLedgerIndexRoute: DashboardLedgerIndexRoute,
 }
 
 const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
